@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Page name</title>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+	<body>
+	<table>
+		<tr>
+			<td>
+				<p>
+					<label>Fahrenheit</label>
+					<input id="inputFahrenheit" type="number" placeholder="Fahrenheit"
+						   oninput="temperatureConverterToC(this.value)"
+						   onchange="temperatureConverterToC(this.value)">
+				</p>
+				<p>
+					<label>Celsius</label>
+					<span id="outputCelsius"></span>
+				</p>
+			</td>
+			<td>
+				<p>
+					<label>Celsius</label>
+					<input id="inputCelsius" type="number" placeholder="Celsius"
+						   oninput="temperatureConverterToF(this.value)"
+						   onchange="temperatureConverterToF(this.value)">
+				</p>
+				<p>
+					<label>Fahrenheit</label>
+					<span id="outputFahrenheit"></span>
+				</p>
+			</td>
+		</tr>
+	</table>
+	</body>
+</html>
