@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>lab_7</title>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+			const LOREM = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus alias, sint rerum nam dignissimos ratione voluptas doloremque!'
+
+			class Article extends React.Component {
+				render() {
+					const styleObject = {
+						color: 'blue',
+						display: 'inline-block',
+						width: '200px',
+						margin: 25,
+						padding: 10,
+						border: '1px solid green',
+						borderRadius: 5,
+						boxSshadow: '5px 5px 5px lightgreen',
+					}
+
+					return (
+						<div className="article-card" style={ styleObject }>
+							<h3>{ this.props.title ? this.props.title : 'Some Title' }</h3>
+							<small>views: { this.props.views ? this.props.views : 0 }</small>
+							<br />
+							<code>{ LOREM }</code>
+						</div>
+					);
+				}
+			}
+
+			class MyApp extends React.Component {
+
+				constructor(props) {
+					super(props);
+					this.state = {
+						title: 'My IT Blog',
+						articles: [
+							{
+								title: "HTML/CSS",
+								views: "120",
+							},
+							{
+								title: "Python 3.11: what's new",
+								views: "310",
+							},
+							{
+								title: "React vs Vue" ,
+								views: "399",
+							},
+							{
+								title: "C++ is dead?",
+								views: "97",
+							},
+							{
+								title: "Kotlin is better than Java",
+								views: "197",
+							},
+						],
+					};
+				}
+
+				getArticles = () => {
+					return this.state.articles.map(
+						(article, idx) => 
+							<Article 
+								title={ article.title } 
+								views={ article.views }
+								key={idx}
+								/>
+					);
+				};
+
+				render() {
+					const titleStyleObject = {
+						color: "green",
+						textAlign: "center",
+
+					};
+
+					return (
+						<div>
+							<h1 style={ titleStyleObject }>{ this.state.title }</h1>
+							{ this.getArticles() }
+						</div>
+					);
+				}
+			}
+			
+			const container = document.getElementById('root');
+			const root = ReactDOM.createRoot(container);
+			root.render(<MyApp />);
+		</script>
+	</body>
+</html>

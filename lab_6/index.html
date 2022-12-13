@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>lab_6</title>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	</head>
+	<body>
+		<div align="center" id = "quizApp">
+			<div class="question-card" 
+				v-for="(q, iq) in questions"  
+				v-if="iq === currentIndex"
+				>
+				<h4> {{ q.text }} </h4>
+
+				<div v-for="(v, iv) in q.variants">
+					<input type="radio" 
+						v-bind:name="iq" 
+						v-bind:id="getVariantId(iq, iv)"
+						v-bind:value="iv"
+						v-model="answers[iq]"
+						>
+					<label v-bind:for="getVariantId(iq, iv)"> 
+						{{ v }} 
+					</label>
+				</div>
+
+				<button v-on:click="onButtonClick">Next question</button>
+			</div>
+
+			<div class="question-card" 
+				v-if="currentIndex === questions.length"
+				>
+				<h4>Results:</h4>
+				<p>Correct answers: {{ getCorrectAnswersAmount() }} out of {{ questions.length }} possible</p>
+			</div>
+		</div>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>

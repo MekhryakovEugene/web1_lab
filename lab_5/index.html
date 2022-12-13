@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>lab_5</title>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/comp.js"></script>
+</head>
+<body>
+    <div id = "moviesApp">
+        <movie-component 
+        v-for="(item, index) in movies" 
+        v-bind:movie="item" 
+        v-bind:key="index"
+        v-bind:handler="() => showYear(index)"
+        />
+    </div>
+
+    <script src="js/vue1.js"></script>
+</body>
+</html>

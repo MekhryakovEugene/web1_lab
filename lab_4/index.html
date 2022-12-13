@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>lab_4</title>
+		<link href="css/style.css" rel="stylesheet"></link>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id = "firstApp">
+			<h2>First App</h2>
+			<p>{{ message }}</p>
+			<code>{{ dateStr }}</code>
+		</div>
+		<hr>
+		<div id = "secondApp">
+			<h2>Second App</h2>
+			<p v-if="visible">{{ txt }}</p>
+			<button v-on:click="handler">{{ caption }}</button>
+		</div>
+		<hr>
+		<div id = "thirdApp">
+			<h2>Third App</h2>
+			<p v-for="todo in todos">task: {{ todo }}</p>
+			<button v-on:click="handler">{{ caption }}</button>
+		</div>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>

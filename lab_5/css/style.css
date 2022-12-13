@@ -1,0 +1,16 @@
+#moviesApp > div {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 250px;
+    margin: 15px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#moviesApp button {
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    font-size: 22px;
+}

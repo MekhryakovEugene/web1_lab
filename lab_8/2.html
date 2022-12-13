@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Matches Game</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div align="center" id="root"></div>
+
+    <script type="text/babel">
+        class Match extends React.Component {
+            render() {
+                const matchStyleObj = {
+                    margin: 10,
+                    padding: 5,
+                    width: 40,
+                    display: "inline-block",
+                    textAlign: "center",
+                }
+
+                return (
+                    <div style = { matchStyleObj }>
+                        <img width="50px" src="img/Match.png" alt="match"/>
+                        <p><b>{ this.props.idx + 1 }</b></p>
+                    </div>
+                );
+            };
+        }
+
+        class MatchesGame extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    firstPlayerTurn: true,
+                    matches: new Array(15).fill(0),
+                };
+            };
+
+            getMatchesComponents = () => {
+                return this.state.matches.map(
+                    (match, idx) => 
+                        <Match
+                            key={idx}
+                            idx={idx}
+                            handlerIncrement = { () => this.incrementCounterByOne(idx) }
+                            handlerDecrement = { () => this.decrementCounterByOne(idx) }
+                            />
+                );
+            };
+
+            getGameHeader = () => {
+                let gameHeader = "";
+
+                if (this.state.matches.length === 0) {
+                    gameHeader = 
+                        this.state.firstPlayerTurn ? 
+                        "First player lost" : 
+                        "Second player lost";
+                } else {
+                    gameHeader = 
+                        this.state.firstPlayerTurn ? 
+                        "First player move" : 
+                        "Second player move";
+                };
+
+                return gameHeader;
+            };
+
+            takeMatches = (amount) => {
+                if (this.state.matches.length < amount) {
+                    alert(`Can't take ${amount} matches!`);
+                    return;
+                }
+
+                let copiedMatches = this.state.matches.slice(0, this.state.matches.length - amount);
+
+                this.setState({
+                    matches: copiedMatches,
+                });
+
+                this.state.firstPlayerTurn = !this.state.firstPlayerTurn;
+            };
+
+            render() {
+                const headerStyleObj = {
+                    fontSize: 28,
+                    textAlign: "center",
+                };
+
+                const buttonStyleObj = {
+                    margin: 20,
+                    padding: 15,
+                    width: 150,
+                    fontSize: 28,
+                    display: "inline-block",
+                    textAlign: "center",
+                };
+
+                return (
+                    <div>
+                        <h2 style={ headerStyleObj }>
+                            { this.getGameHeader() }
+                        </h2>
+
+                        { this.getMatchesComponents() }
+                        <br/>
+                        <button 
+                            style={ buttonStyleObj } 
+                            onClick={ () => this.takeMatches(1) }
+                            > 
+                        Take 1 match
+                        </button>
+                        <button 
+                            style={ buttonStyleObj } 
+                            onClick={ () => this.takeMatches(2) }
+                            > 
+                        Take 2 matches
+                        </button>
+                        <button 
+                            style={ buttonStyleObj } 
+                            onClick={ () => this.takeMatches(3) }
+                            > 
+                        Take 3 matches
+                        </button>
+                    </div>
+                );
+            };
+        }
+        
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<MatchesGame />);
+    </script>
+  </body>
+</html>

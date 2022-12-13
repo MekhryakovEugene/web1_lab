@@ -1,0 +1,20 @@
+.question-card {
+    width: 450px;
+    margin: 15px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.question-card > button {
+    width: 150px;
+    padding: 10px;
+    margin: 10px 150px;
+}
+
+.answer-card {
+    margin: 15px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
